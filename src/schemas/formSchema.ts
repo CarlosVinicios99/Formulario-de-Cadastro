@@ -8,11 +8,11 @@ export const formSchema = z.object({
     }),
     email: z.string().min(1, "O campo é obrigatório").email("Utilize um e-mail válido"),
     password: z.string().min(6, "A senha precisa ter no mínimo 6 caracteres"),
-    confirmPassword: z.string().min(6, "A senha precisa ter no mínimo 6 caracteres"),
-    agree: z.boolean().refine((field) => field !== true, {
+    confirmpassword: z.string().min(6, "A confirmação precisa ter no mínimo 6 caracteres"),
+    agree: z.boolean().refine((field) => field === true, {
         message: "Você precisa aceitar os termos"
     })
-}).refine((field) => field.password === field.confirmPassword, {
+}).refine((field) => field.password === field.confirmpassword, {
     message: "As senhas precisam ser iguais",
     path: ["confirmpassword"]
 })
